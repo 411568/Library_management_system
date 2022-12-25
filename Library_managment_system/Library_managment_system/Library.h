@@ -6,28 +6,32 @@
 #include <vector>
 #include <map>
 #include <memory>
-#include "Lib_Item.h"
+#include "Book.h"
 #include "User.h"
 #include "Student.h"
 #include "Book.h"
+#include "fileReadWrite.h"
 
 class Library
 {
 private:
 	//list of all the items in the library
-	static std::vector<std::shared_ptr<Lib_Item>> libraryItems;
+	static std::vector<Book> libraryItems;
 
-	//list of all the users
-	static std::vector<std::shared_ptr<User>> libraryUsers;
+	//list of all the students
+	static std::vector<Student> libraryUsers;
 
 public:
 	static Library& GetInstance();
+	
+	//get the list of users from file
+	void readUserFile();
 
 	//setters
-	void addItem(std::shared_ptr<Lib_Item> input);
-	void addUser(std::shared_ptr<User> input);
+	void addItem(Book input);
+	void addUser(Student input);
 
 	//getters
-	std::vector<std::shared_ptr<Lib_Item>> getItems();
-	std::vector<std::shared_ptr<User>> getUsers();
+	std::vector<Book> getItems();
+	std::vector<Student> getUsers();
 };

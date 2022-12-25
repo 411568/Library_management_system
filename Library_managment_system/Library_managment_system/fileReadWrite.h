@@ -9,4 +9,4 @@
 #include "Student.h"
 
 //reads the user database and writes it to a vector 
-void readUserDatabase(std::vector<std::shared_ptr<User>>& users);
+void readUserDatabase(std::vector<Student>& students);

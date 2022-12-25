@@ -1,11 +1,9 @@
 #include "fileReadWrite.h"
-void readUserDatabase(std::vector<std::shared_ptr<User>>& users)
+void readUserDatabase(std::vector<Student>& students)
 {
 	std::fstream file("LibraryUserDatabase.txt");
-	std::stringstream sstr("123");
 	std::vector<std::string> v;
 	Student tempUser;
-	std::shared_ptr<User> sharedUser;
 	
 	for( std::string inputLine; std::getline(file, inputLine); )
 	{
@@ -22,7 +20,6 @@ void readUserDatabase(std::vector<std::shared_ptr<User>>& users)
 		tempUser.setAge(std::stoi(v[2]));
 		tempUser.setUniID(v[3]);
 
-		sharedUser = std::make_shared<User>(tempUser);
-		users.push_back(sharedUser);
+		students.push_back(tempUser);
 	}
 }

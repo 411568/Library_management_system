@@ -1,7 +1,7 @@
 #include "Library.h"
 
-std::vector<std::shared_ptr<Lib_Item>> Library::libraryItems;
-std::vector<std::shared_ptr<User>> Library::libraryUsers;
+std::vector<Book> Library::libraryItems;
+std::vector<Student> Library::libraryUsers;
 
 Library& Library::GetInstance()
 {
@@ -9,22 +9,27 @@ Library& Library::GetInstance()
 	return *singleton;
 }
 
-void Library::addItem(std::shared_ptr<Lib_Item> input)
+void Library::readUserFile()
+{
+	readUserDatabase(libraryUsers);
+}
+
+void Library::addItem(Book input)
 {
 	libraryItems.push_back(input);
 }
 
-void Library::addUser(std::shared_ptr<User> input)
+void Library::addUser(Student input)
 {
 	libraryUsers.push_back(input);
 }
 
-std::vector<std::shared_ptr<Lib_Item>> Library::getItems() 
+std::vector<Book> Library::getItems() 
 {
 	return libraryItems;
 }
 
-std::vector<std::shared_ptr<User>> Library::getUsers() 
+std::vector<Student> Library::getUsers() 
 {
 	return libraryUsers;
 }

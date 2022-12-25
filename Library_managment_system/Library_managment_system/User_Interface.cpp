@@ -37,26 +37,18 @@ void User_Interface::start()
 void User_Interface::StudentMenu()
 {
 	//work in progress
-
-	Library lib = Library::GetInstance();
-	
-	//add all the users from the database file to the library class
-	std::vector<std::shared_ptr<User>> users;
-	readUserDatabase(users); //this gives vector out of range error
-	for (auto user : users)
-	{
-		lib.addUser(user);
-	}
-
 	std::string input;
 	bool valid_input = false;
 
-	//list of all studentIDs
-	std::vector<std::string> studentIDs;
-	for (auto student : users)
+	//library instance
+	Library& lib = Library::GetInstance();
+	lib.readUserFile();
+
+	//get all the student IDs
+	std::vector<std::string> uIDs;
+	for (auto student : lib.getUsers())
 	{
-		auto temp = std::static_pointer_cast<Student>(student);
-		//studentIDs.push_back(temp->getUniID());
+		uIDs.push_back(student.getUniID());
 	}
 
 	do
@@ -64,7 +56,9 @@ void User_Interface::StudentMenu()
 		system("cls");
 		std::cout << "Enter your university ID: " << std::endl;
 		std::cin >> input;
-		if (/*exists such a student*/1)
+
+		//check if the student ID exists
+		if(std::count(uIDs.begin(), uIDs.end(), input))
 		{
 			valid_input = true;
 		}

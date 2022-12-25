@@ -20,7 +20,7 @@ int Student::getAge() const
 	return age;
 }
 	
-std::vector<std::shared_ptr<Lib_Item>> Student::getCheckedOutItems() const
+std::vector<Book> Student::getCheckedOutItems() const
 {
 	return checkedOutItems;
 }

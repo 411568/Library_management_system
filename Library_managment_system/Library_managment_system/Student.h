@@ -11,6 +11,7 @@
 #include <vector>
 #include <memory>
 #include "Lib_Item.h"
+#include "Book.h"
 
 class Student : public User
 {
@@ -18,7 +19,7 @@ private:
 	std::string uniID;
 	int age{};
 
-	std::vector<std::shared_ptr<Lib_Item>> checkedOutItems;
+	std::vector<Book> checkedOutItems;
 
 public:
 	//returns all of the informations about a user (except for the list of checked out items)
@@ -31,6 +32,6 @@ public:
 	//getters 
 	std::string getUniID() const;
 	int getAge() const;
-	std::vector<std::shared_ptr<Lib_Item>> getCheckedOutItems() const;
+	std::vector<Book> getCheckedOutItems() const;
 };
 
