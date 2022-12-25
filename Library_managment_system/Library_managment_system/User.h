@@ -20,7 +20,9 @@ private:
 
 public:
 	//returns all of the informations about a user
-	virtual void getInfo(std::map<std::string, std::string>& infoMap) = 0;
+
+	//doesn't work for some reason XD
+//	virtual void getInfo(std::map<std::string, std::string>& infoMap) = 0;
 
 	//setters
 	void setName(const std::string& input);

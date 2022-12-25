@@ -1,5 +1,7 @@
 #include "Library.h"
 
+std::vector<std::shared_ptr<Lib_Item>> Library::libraryItems;
+std::vector<std::shared_ptr<User>> Library::libraryUsers;
 
 Library& Library::GetInstance()
 {
