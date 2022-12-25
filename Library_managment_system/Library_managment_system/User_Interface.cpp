@@ -42,7 +42,7 @@ void User_Interface::StudentMenu()
 	
 	//add all the users from the database file to the library class
 	std::vector<std::shared_ptr<User>> users;
-//	readUserDatabase(users); //this gives vector out of range error
+	readUserDatabase(users); //this gives vector out of range error
 	for (auto user : users)
 	{
 		lib.addUser(user);
@@ -50,6 +50,14 @@ void User_Interface::StudentMenu()
 
 	std::string input;
 	bool valid_input = false;
+
+	//list of all studentIDs
+	std::vector<std::string> studentIDs;
+	for (auto student : users)
+	{
+		auto temp = std::static_pointer_cast<Student>(student);
+		//studentIDs.push_back(temp->getUniID());
+	}
 
 	do
 	{

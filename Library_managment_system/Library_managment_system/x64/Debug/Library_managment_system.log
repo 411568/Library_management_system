@@ -1,2 +1,19 @@
-﻿  User_Interface.cpp
-  Library_managment_system.vcxproj -> C:\Users\User\Desktop\Library_managment_system\Library_managment_system\x64\Debug\Library_managment_system.exe
+﻿  Library.cpp
+  Library_managment_system.cpp
+  Student.cpp
+  User.cpp
+  User_Interface.cpp
+  fileReadWrite.cpp
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.33.31629\include\xmemory(1934,9): error C2259: 'User': cannot instantiate abstract class
+C:\Users\User\Desktop\Library_managment_system\Library_managment_system\Library_managment_system\User.h(15): message : see declaration of 'User'
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.33.31629\include\xmemory(1934,9): message : due to following members:
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.33.31629\include\xmemory(1934,9): message : 'void User::getInfo(std::map<std::string,std::string,std::less<std::string>,std::allocator<std::pair<const std::string,std::string>>> &)': is abstract
+C:\Users\User\Desktop\Library_managment_system\Library_managment_system\Library_managment_system\User.h(25): message : see declaration of 'User::getInfo'
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.33.31629\include\memory(2043): message : see reference to class template instantiation 'std::_Wrap<_Ty>' being compiled
+          with
+          [
+              _Ty=User
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.33.31629\include\memory(2741): message : see reference to class template instantiation 'std::_Ref_count_obj2<User>' being compiled
+C:\Users\User\Desktop\Library_managment_system\Library_managment_system\Library_managment_system\fileReadWrite.cpp(25): message : see reference to function template instantiation 'std::shared_ptr<User> std::make_shared<User,Student&>(Student &)' being compiled
+  Generating Code...

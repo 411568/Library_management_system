@@ -16,7 +16,7 @@ class Student : public User
 {
 private:
 	std::string uniID;
-	int age;
+	int age{};
 
 	std::vector<std::shared_ptr<Lib_Item>> checkedOutItems;
 
