@@ -14,13 +14,21 @@ void Lib_Item::setInternalID(const int& input)
 void Lib_Item::setReserved(const bool& input)
 {
 	reserved = input;
-	//reservedTILL = DATE_TIME::GetCurrentDay() + 7; //seven days reservation
 }
 
 void Lib_Item::setChecked(const bool& input)
 {
 	checkedOUT = input;
-	//returnDATE = DATE_TIME::GetCurrentDay() + 30; //30 days till you have to return the book
+}
+
+void Lib_Item::setReservedDate(const std::string& input)
+{
+	reservedTILL = input;
+}
+
+void Lib_Item::setReturnDate(const std::string& input)
+{
+	returnDATE = input;
 }
 
 std::string Lib_Item::getTitle() const

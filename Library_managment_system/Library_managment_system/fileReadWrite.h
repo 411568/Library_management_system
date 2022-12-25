@@ -8,5 +8,13 @@
 #include "User.h"
 #include "Student.h"
 
-//reads the user database and writes it to a vector 
-void readUserDatabase(std::vector<Student>& students);
+
+class fileReadWrite
+{
+public:
+	//reads the user database and writes it to a vector 
+	static void readUserDatabase(std::vector<Student>& students);
+
+	//reads the book database and writes it to a vector 
+	static void readBookDatabase(std::vector<Book>& books);
+};

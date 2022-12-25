@@ -27,5 +27,7 @@ public:
 	void start();
 
 	void StudentMenu();
+
+	void StudentBookCheck(std::string studentID);
 };
 

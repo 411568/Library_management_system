@@ -4,6 +4,10 @@ void User_Interface::start()
 {
 	//work in progress
 
+	Library& lib = Library::GetInstance();
+	lib.readUserFile();
+	lib.readBookFile();
+
 	std::string input;
 	bool valid_input = false;
 
@@ -39,10 +43,10 @@ void User_Interface::StudentMenu()
 	//work in progress
 	std::string input;
 	bool valid_input = false;
+	std::string ID;
 
 	//library instance
 	Library& lib = Library::GetInstance();
-	lib.readUserFile();
 
 	//get all the student IDs
 	std::vector<std::string> uIDs;
@@ -60,6 +64,7 @@ void User_Interface::StudentMenu()
 		//check if the student ID exists
 		if(std::count(uIDs.begin(), uIDs.end(), input))
 		{
+			ID = input;
 			valid_input = true;
 		}
 		else
@@ -84,7 +89,7 @@ void User_Interface::StudentMenu()
 		}
 		else if (input == "2")
 		{
-			//bookCheckOut();
+			StudentBookCheck(ID);
 			valid_input = true;
 		}
 		else if (input == "3")
@@ -99,4 +104,67 @@ void User_Interface::StudentMenu()
 			std::cin.get();
 		}
 	} while (valid_input == false);
+}
+
+
+void User_Interface::StudentBookCheck(std::string studentID)
+{
+	//vector of books in the library
+	std::vector<Book> books;
+
+	Library& lib = Library::GetInstance();
+	books = lib.getItems();
+
+	
+	std::string input;
+	bool valid_input = false;
+	std::string bookID;
+	do
+	{
+		std::vector<int> bookIDs;
+
+		system("cls");
+		std::cout << "Which book would you like to check out?" << std::endl;
+		std::cout << "Please enter the ID for the entry you're interested in." << std::endl << std::endl;
+
+		//show all the entries
+		for (auto book : books)
+		{
+			if (book.getChecked() == false)
+			{
+				std::cout << book.getInternalID() << " " << book.getTitle() << " ISBN: ";
+				std::cout << book.getISBN() << " Page Count: " << book.getPageCount();
+				std::cout << std::endl;
+
+				bookIDs.push_back(book.getInternalID());
+			}
+		}
+
+		std::cin >> input;
+
+		//check if the book exists
+		try
+		{
+			if (std::count(bookIDs.begin(), bookIDs.end(), std::stoi(input)))
+			{
+				bookID = input;
+				valid_input = true;
+			}
+			else
+			{
+				std::cout << "Invalid entry, please try again.";
+				std::cin.get();
+				std::cin.get();
+			}
+		}
+		catch (...)
+		{
+			std::cout << "Invalid entry, please try again.";
+			std::cin.get();
+			std::cin.get();
+		}
+	} while (valid_input == false);
+
+	//show the book details and ask if want to check out
+//	showBookDetails(std::stoi(bookID), studentID);
 }

@@ -27,6 +27,9 @@ public:
 	//get the list of users from file
 	void readUserFile();
 
+	//get the list of books from file
+	void readBookFile();
+
 	//setters
 	void addItem(Book input);
 	void addUser(Student input);

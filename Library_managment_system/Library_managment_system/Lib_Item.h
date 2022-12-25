@@ -42,6 +42,9 @@ public:
 	void setInternalID(const int& input);
 	void setReserved(const bool& input);
 	void setChecked(const bool& input);
+	void setReturnDate(const std::string& input);
+	void setReservedDate(const std::string& input);
+
 	
 	//getters
 	std::string getTitle() const;

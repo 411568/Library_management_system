@@ -18,6 +18,10 @@ int main()
     try
     {
         userInteface->start();
+
+        //save all the changes to database
+        Library& lib = Library::GetInstance();
+        //lib.saveDataToFiles();
     }
     catch (...)
     {

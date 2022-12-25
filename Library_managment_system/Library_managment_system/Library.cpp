@@ -11,7 +11,12 @@ Library& Library::GetInstance()
 
 void Library::readUserFile()
 {
-	readUserDatabase(libraryUsers);
+	fileReadWrite::readUserDatabase(libraryUsers);
+}
+
+void Library::readBookFile()
+{
+	fileReadWrite::readBookDatabase(libraryItems);
 }
 
 void Library::addItem(Book input)
