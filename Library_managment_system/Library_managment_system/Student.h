@@ -28,6 +28,8 @@ public:
 	//setters
 	void setUniID(const std::string& input);
 	void setAge(const int& input);
+	void addBook(const Book& input);
+	void removeBook(const int& bID);
 
 	//getters 
 	std::string getUniID() const;

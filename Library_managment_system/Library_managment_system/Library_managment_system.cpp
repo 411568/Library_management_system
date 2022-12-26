@@ -15,17 +15,17 @@ int main()
 
     std::unique_ptr<User_Interface> userInteface;
 
-    try
-    {
+   // try
+    //{
         userInteface->start();
 
         //save all the changes to database
         Library& lib = Library::GetInstance();
         //lib.saveDataToFiles();
-    }
-    catch (...)
-    {
-        std::cout << "Error occurred. Exiting..." << std::endl;
-        return 0;
-    }
+    //}
+    //catch (...)
+    //{
+      //  std::cout << "Error occurred. Exiting..." << std::endl;
+        //return 0;
+    //}
 }

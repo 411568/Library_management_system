@@ -22,12 +22,16 @@ private:
 	User_Interface(User_Interface&&) = delete;
 	User_Interface& operator=(User_Interface&&) = delete;
 
-public:
-	//start the main interface
-	void start();
-
+	//submenus
 	void StudentMenu();
 
 	void StudentBookCheck(std::string studentID);
+
+	void StudentBookReturn(std::string studentID);
+
+
+public:
+	//start the main interface
+	void start();
 };
 

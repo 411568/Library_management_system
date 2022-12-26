@@ -11,6 +11,7 @@
 #include "Student.h"
 #include "Book.h"
 #include "fileReadWrite.h"
+#include "DateParser.h"
 
 class Library
 {
@@ -29,6 +30,13 @@ public:
 
 	//get the list of books from file
 	void readBookFile();
+
+
+	//checkOUT a book
+	void checkOutBook(const std::string& studID, const int& bID);
+
+	//return a book (returns the amount of money you have to pay if overdue)
+	int returnBook(const std::string& studID, const int& bID);
 
 	//setters
 	void addItem(Book input);

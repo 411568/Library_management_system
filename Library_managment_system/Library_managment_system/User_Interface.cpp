@@ -84,7 +84,7 @@ void User_Interface::StudentMenu()
 		std::cin >> input;
 		if (input == "1")
 		{
-			//bookReturn();
+			StudentBookReturn(ID);
 			valid_input = true;
 		}
 		else if (input == "2")
@@ -165,6 +165,111 @@ void User_Interface::StudentBookCheck(std::string studentID)
 		}
 	} while (valid_input == false);
 
-	//show the book details and ask if want to check out
-//	showBookDetails(std::stoi(bookID), studentID);
+
+	//check out the book
+	lib.checkOutBook(studentID, std::stoi(bookID));
+	
+
+	system("cls");
+	std::cout << "The book has been checked out. Thank you." << std::endl;
+	std::cin.get();
+	std::cin.get();
+
+	start();
+}
+
+
+void User_Interface::StudentBookReturn(std::string studentID)
+{
+	//vector of books checked out by the student
+	std::vector<Book> books;
+
+	Library& lib = Library::GetInstance();
+	std::vector<Student> students;
+	students = lib.getUsers();
+
+	int i = 0;
+	for (; i < students.size(); i++)
+	{
+		if (students[i].getUniID() == studentID)
+		{
+			break;
+		}
+	}
+
+	//get all the books
+	books = students[i].getCheckedOutItems();
+	
+
+	std::string input;
+	bool valid_input = false;
+	std::string bookID;
+
+	if (books.empty() == false)
+	{
+		do
+		{
+			std::vector<int> bookIDs;
+
+			system("cls");
+			std::cout << "Which book would you like to return?" << std::endl;
+			std::cout << "Please enter the book ID." << std::endl << std::endl;
+
+			//show all the entries that the user has checked out
+			for (auto book : books)
+			{
+				std::cout << book.getInternalID() << " " << book.getTitle() << " ISBN: ";
+				std::cout << book.getISBN() << " Page Count: " << book.getPageCount();
+				std::cout << std::endl;
+
+				bookIDs.push_back(book.getInternalID());
+			}
+
+			std::cin >> input;
+
+			//check if the book exists
+			try
+			{
+				if (std::count(bookIDs.begin(), bookIDs.end(), std::stoi(input)))
+				{
+					bookID = input;
+					valid_input = true;
+				}
+				else
+				{
+					std::cout << "Invalid entry, please try again.";
+					std::cin.get();
+					std::cin.get();
+				}
+			}
+			catch (...)
+			{
+				std::cout << "Invalid entry, please try again.";
+				std::cin.get();
+				std::cin.get();
+			}
+		} while (valid_input == false);
+
+
+		//return the book
+		int payment = lib.returnBook(studentID, std::stoi(bookID));
+
+
+		system("cls");
+		std::cout << "The book has been returned. Thank you." << std::endl;
+		if (payment > 0)
+		{
+			std::cout << "You have to pay: " << payment * 10 << "zl, as it was overdue." << std::endl;
+		}
+		std::cin.get();
+		std::cin.get();
+	}
+	else // if there is nothing to return 
+	{
+		system("cls");
+		std::cout << "Nothing to return..." << std::endl;
+		std::cin.get();
+		std::cin.get();
+	}
+	start();
 }
