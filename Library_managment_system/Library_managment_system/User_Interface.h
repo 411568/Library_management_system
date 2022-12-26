@@ -29,6 +29,17 @@ private:
 
 	void StudentBookReturn(std::string studentID);
 
+	void StudentBookReserve(std::string studentID);
+
+	void AdminLogin();
+
+	void AdminMenu();
+
+	void ShowAllUsers();
+
+	void ShowSingleUser(std::string studentID);
+
+	void ShowAllBooks();
 
 public:
 	//start the main interface

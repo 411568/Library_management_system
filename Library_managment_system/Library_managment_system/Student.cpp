@@ -49,3 +49,13 @@ void Student::removeBook(const int& bID)
 		}
 	}
 }
+
+void Student::addReserve(const Book& input)
+{
+	reservedItems.push_back(input);
+}
+
+std::vector<Book> Student::getReservedItems() const
+{
+	return reservedItems;
+}

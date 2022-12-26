@@ -48,6 +48,7 @@ void Library::checkOutBook(const std::string& studID, const int& bID)
 		if (libraryItems[j].getInternalID() == bID)
 		{
 			libraryItems[j].setChecked(true);
+			libraryItems[j].setReserved(false);
 			libraryItems[j].setReturnDate(DateParser::getReturnDate());
 			break;
 		}
@@ -115,5 +116,28 @@ int Library::returnBook(const std::string& studID, const int& bID)
 	{
 		//x months overdue - x money to pay
 		return (std::stoi(mNow) + (12 - std::stoi(mRet)));
+	}
+}
+
+
+void Library::reserveBook(const std::string& studID, const int& bID)
+{
+	int j = 0;
+	for (; j < libraryItems.size(); j++)
+	{
+		if (libraryItems[j].getInternalID() == bID)
+		{
+			libraryItems[j].setReserved(true);
+			break;
+		}
+	}
+
+	for (int i = 0; i < libraryUsers.size(); i++)
+	{
+		if (libraryUsers[i].getUniID() == studID)
+		{
+			libraryUsers[i].addReserve(libraryItems[j]);
+			break;
+		}
 	}
 }

@@ -38,6 +38,10 @@ public:
 	//return a book (returns the amount of money you have to pay if overdue)
 	int returnBook(const std::string& studID, const int& bID);
 
+	//reserve book
+	void reserveBook(const std::string& studID, const int& bID);
+
+
 	//setters
 	void addItem(Book input);
 	void addUser(Student input);

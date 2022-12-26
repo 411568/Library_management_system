@@ -20,6 +20,7 @@ private:
 	int age{};
 
 	std::vector<Book> checkedOutItems;
+	std::vector<Book> reservedItems;
 
 public:
 	//returns all of the informations about a user (except for the list of checked out items)
@@ -30,10 +31,12 @@ public:
 	void setAge(const int& input);
 	void addBook(const Book& input);
 	void removeBook(const int& bID);
+	void addReserve(const Book& input);
 
 	//getters 
 	std::string getUniID() const;
 	int getAge() const;
 	std::vector<Book> getCheckedOutItems() const;
+	std::vector<Book> getReservedItems() const;
 };
 
