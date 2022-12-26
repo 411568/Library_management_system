@@ -7,6 +7,7 @@
 #include <fstream>
 #include "User.h"
 #include "Student.h"
+#include "Library.h"
 
 
 class fileReadWrite

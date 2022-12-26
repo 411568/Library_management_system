@@ -2,12 +2,6 @@
 
 void User_Interface::start()
 {
-	//work in progress
-
-	Library& lib = Library::GetInstance();
-	lib.readUserFile();
-	lib.readBookFile();
-
 	std::string input;
 	bool valid_input = false;
 
@@ -46,10 +40,11 @@ void User_Interface::StudentMenu()
 
 	//library instance
 	Library& lib = Library::GetInstance();
+	auto students = lib.getUsers();
 
 	//get all the student IDs
 	std::vector<std::string> uIDs;
-	for (auto student : lib.getUsers())
+	for (auto student : students)
 	{
 		uIDs.push_back(student.getUniID());
 	}
@@ -184,8 +179,7 @@ void User_Interface::StudentBookReturn(std::string studentID)
 	std::vector<Book> books;
 
 	Library& lib = Library::GetInstance();
-	std::vector<Student> students;
-	students = lib.getUsers();
+	std::vector<Student> students = lib.getUsers();
 
 	int i = 0;
 	for (; i < students.size(); i++)
@@ -494,7 +488,6 @@ void User_Interface::ShowSingleUser(std::string studentID)
 	std::cin.get();
 }
 
-//todo
 void User_Interface::ShowAllBooks()
 {
 	std::string input;
@@ -522,7 +515,7 @@ void User_Interface::ShowAllBooks()
 			if (std::count(IDs.begin(), IDs.end(), std::stoi(input)))
 			{
 				//goto single book view
-				//ShowSingleBook(input);
+				ShowSingleBook(std::stoi(input));
 				valid_input = true;
 			}
 			else
@@ -542,4 +535,48 @@ void User_Interface::ShowAllBooks()
 	
 	} while (valid_input == false);
 	AdminMenu();
+}
+
+void User_Interface::ShowSingleBook(int bID)
+{
+	system("cls");
+
+	Library& lib = Library::GetInstance();
+	std::vector<Book> books = lib.getItems();
+
+	for (int i = 0; i < books.size(); i++)
+	{
+		if (books[i].getInternalID() == bID)
+		{
+			std::cout << "Internal ID: " << books[i].getInternalID() << std::endl;
+			std::cout << "Title: " << books[i].getTitle() << std::endl;
+			std::cout << "ISBN: " << books[i].getISBN() << std::endl;
+			std::cout << "Page Count: " << books[i].getPageCount() << std::endl;
+	
+			std::cout << "Checked out: ";
+			if (books[i].getChecked() == true)
+			{
+				std::cout << "YES" << std::endl;
+			}
+			else
+			{
+				std::cout << "NO" << std::endl;
+			}
+			
+			std::cout << "Reserved: ";
+			if (books[i].getReserved() == true)
+			{
+				std::cout << "YES" << std::endl;
+			}
+			else
+			{
+				std::cout << "NO" << std::endl;
+			}
+
+			break;
+		}
+	}
+
+	std::cin.get();
+	std::cin.get();
 }

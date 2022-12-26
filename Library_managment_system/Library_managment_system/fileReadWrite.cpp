@@ -3,10 +3,10 @@
 void fileReadWrite::readUserDatabase(std::vector<Student>& students)
 {
 	std::fstream file("LibraryUserDatabase.txt");
-	Student tempUser;
 	
 	for( std::string inputLine; std::getline(file, inputLine); )
 	{
+		Student tempUser;
 		std::vector<std::string> v;
 		std::string delimiter_char = ";";
 		size_t pos = 0;
@@ -21,18 +21,81 @@ void fileReadWrite::readUserDatabase(std::vector<Student>& students)
 		tempUser.setAge(std::stoi(v[2]));
 		tempUser.setUniID(v[3]);
 
+		v.erase(v.begin(), v.begin() + 4);
+
+		if (v.empty() == false)
+		{
+			//if there is more elements then look for checked out and reserved books
+			std::vector<std::string> checked;
+			std::vector<std::string> reserved;
+
+			//checked out books first
+			for (auto elem : v)
+			{
+				if (elem != "_")
+				{
+					checked.push_back(elem);
+				}
+				else
+				{
+					break;
+				}
+			}
+
+			v.erase(v.begin(), std::find(v.begin(), v.end(), "_")+1);
+
+			//then the reserved books
+			for (auto elem : v)
+			{
+				if (elem != "_")
+				{
+					reserved.push_back(elem);
+				}
+				else
+				{
+					break;
+				}
+			}
+
+
+			Library& lib = Library::GetInstance();
+			std::vector<Book> books = lib.getItems();
+
+			//add books to the user
+			for(auto elem : checked)
+			{
+				for (auto book : books)
+				{
+					if (elem == std::to_string(book.getInternalID()))
+					{
+						tempUser.addBook(book);
+					}
+				}
+			}
+
+			for(auto elem : reserved)
+			{
+				for (auto book : books)
+				{
+					if (elem == std::to_string(book.getInternalID()))
+					{
+						tempUser.addReserve(book);
+					}
+				}
+			}
+		}
+
 		students.push_back(tempUser);
 	}
 }
 
-
 void fileReadWrite::readBookDatabase(std::vector<Book>& books)
 {
 	std::fstream file("LibraryItemDatabase.txt");
-	Book tempBook;
 	
 	for(std::string inputLine; std::getline(file, inputLine); )
 	{
+		Book tempBook;
 		std::vector<std::string> v;
 		std::string delimiter_char = ";";
 		size_t pos = 0;

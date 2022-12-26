@@ -41,6 +41,8 @@ private:
 
 	void ShowAllBooks();
 
+	void ShowSingleBook(int bID);
+
 public:
 	//start the main interface
 	void start();
