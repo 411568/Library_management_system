@@ -12,7 +12,11 @@ It's was programmed and tested on a windows 11 OS, and some functions will not w
 ##Screenshots
 
 Below are some screenshots from the running program:
-![Main menu](/screenshots/main_menu.png?raw=true "Main Menu")
+![Main menu](/screenshots/main_menu.png?raw=true "Main Menu") \
+![Admin menu](/screenshots/admin_menu.png?raw=true "Admin Menu") \
+![View books](/screenshots/view_books.png?raw=true "View books") \
+![Checkout book](/screenshots/checkout_book.png?raw=true "Checkout book") \
+
 
 ## Author
 Krzysztof Sikora\
