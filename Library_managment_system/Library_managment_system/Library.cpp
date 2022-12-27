@@ -50,7 +50,8 @@ void Library::checkOutBook(const std::string& studID, const int& bID)
 		{
 			libraryItems[j].setChecked(true);
 			libraryItems[j].setReserved(false);
-			libraryItems[j].setReturnDate(DateParser::getReturnDate());
+			libraryItems[j].setReturnDate(DateParser::getCurrentDate());
+			//libraryItems[j].setReturnDate(DateParser::getReturnDate());
 			break;
 		}
 	}
@@ -161,3 +162,4 @@ void Library::saveToFiles()
 	fileReadWrite::saveUserDatabase(libraryUsers);
 	fileReadWrite::saveItemDatabase(libraryItems);
 }
+

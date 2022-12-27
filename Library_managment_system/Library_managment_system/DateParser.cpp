@@ -11,9 +11,14 @@ std::string DateParser::getCurrentDate()
 	temp += std::to_string(1900+ltm->tm_year);
 	temp += "_";
 	
+	//if the month or day is less than 10 then add 0 before it to keep the same format
+	if (1 + ltm->tm_mon < 10)
+		temp += "0";
 	temp += std::to_string(1+ltm->tm_mon);
 	temp += "_";
 
+	if (1 + ltm->tm_mday < 10)
+		temp += "0";
 	temp += std::to_string(ltm->tm_mday);
 
 	return temp;
@@ -26,9 +31,13 @@ std::string DateParser::toDate(std::string year, std::string month, std::string 
 	temp += year;
 	temp += "_";
 	
+	if (1 + std::stoi(month) < 10)
+		temp += "0";
 	temp += month;
 	temp += "_";
 
+	if (1 + std::stoi(day) < 10)
+		temp += "0";
 	temp += day;
 
 	return temp;

@@ -134,10 +134,88 @@ void fileReadWrite::readBookDatabase(std::vector<Book>& books)
 
 void fileReadWrite::saveUserDatabase(const std::vector<Student>& students)
 {
+	std::ofstream outFile("LibraryUserDatabase.txt");
 
+	for (auto user : students)
+	{
+		std::string singleLine;
+
+		//basic info
+		singleLine += user.getName();
+		singleLine += ";";
+		singleLine += user.getSurname();
+		singleLine += ";";
+		singleLine += std::to_string(user.getAge());
+		singleLine += ";";
+		singleLine += user.getUniID();
+		singleLine += ";";
+
+		//checked out books
+		auto checked = user.getCheckedOutItems();
+		if (checked.size() > 0)
+		{
+			for (auto elem : checked)
+			{
+				singleLine += std::to_string(elem.getInternalID());
+				singleLine += ";";
+			}
+		}
+
+		singleLine += "_;";
+		
+		//reserved books
+		auto reserved = user.getReservedItems();
+		if (reserved.size() > 0)
+		{
+			for (auto elem : reserved)
+			{
+				singleLine += std::to_string(elem.getInternalID());
+				singleLine += ";";
+			}
+		}
+		
+		//save line to file
+		outFile << singleLine << std::endl;
+	}
 }
 
 void fileReadWrite::saveItemDatabase(const std::vector<Book>& books)
 {
+	std::ofstream outFile("LibraryItemDatabase.txt");
 
+	for (auto book : books)
+	{
+		std::string singleLine;
+
+		//basic info
+		singleLine += book.getTitle();
+		singleLine += ";";
+		singleLine += std::to_string(book.getInternalID());
+		singleLine += ";";
+
+		
+		if (book.getChecked() == true)
+			singleLine += "1";
+		else
+			singleLine += "0";
+		singleLine += ";";
+		if (book.getReserved() == true)
+			singleLine += "1";
+		else
+			singleLine += "0";
+		singleLine += ";";
+
+
+		singleLine += book.getReturnDate();
+		singleLine += ";";
+		singleLine += book.getReservedTILL();
+		singleLine += ";";
+		singleLine += book.getISBN();
+		singleLine += ";";
+		singleLine += std::to_string(book.getPageCount());
+		singleLine += ";";
+		
+		//save line to file
+		outFile << singleLine << std::endl;
+	}
 }
