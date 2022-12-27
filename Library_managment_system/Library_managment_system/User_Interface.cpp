@@ -15,7 +15,7 @@ void User_Interface::start()
 	do
 	{
 		system("cls");
-		std::cout << "1 - Student\n2 - Admin" << std::endl;
+		std::cout << "1 - Student\n2 - Admin\n3 - Exit program" << std::endl;
 		std::cin >> input;
 		if (input == "1")
 		{
@@ -25,6 +25,13 @@ void User_Interface::start()
 		else if (input == "2")
 		{
 			AdminLogin();
+			valid_input = true;
+		}
+		else if (input == "3")
+		{
+			auto lib = Library::GetInstance();
+			lib.saveToFiles();
+			exit(0);
 			valid_input = true;
 		}
 		else
@@ -67,6 +74,11 @@ void User_Interface::StudentMenu()
 			ID = input;
 			valid_input = true;
 		}
+		else if (input == "-1")
+		{
+			start();
+			valid_input = true;
+		}
 		else
 		{
 			std::cout << "Wrong ID! Please enter the correct ID or contact the library administrator." << std::endl;
@@ -95,6 +107,11 @@ void User_Interface::StudentMenu()
 		else if (input == "3") //reserve book
 		{
 			StudentBookReserve(ID);
+			valid_input = true;
+		}
+		else if (input == "-1")
+		{
+			start();
 			valid_input = true;
 		}
 		else
@@ -148,6 +165,11 @@ void User_Interface::StudentBookCheck(std::string studentID)
 			if (std::count(bookIDs.begin(), bookIDs.end(), std::stoi(input)))
 			{
 				bookID = input;
+				valid_input = true;
+			}
+			else if (input == "-1")
+			{
+				start();
 				valid_input = true;
 			}
 			else
@@ -234,6 +256,11 @@ void User_Interface::StudentBookReturn(std::string studentID)
 					bookID = input;
 					valid_input = true;
 				}
+				else if (input == "-1")
+				{
+					start();
+					valid_input = true;
+				}
 				else
 				{
 					std::cout << "Invalid entry, please try again.";
@@ -317,6 +344,11 @@ void User_Interface::StudentBookReserve(std::string studentID)
 				bookID = input;
 				valid_input = true;
 			}
+			else if (input == "-1")
+			{
+				start();
+				valid_input = true;
+			}
 			else
 			{
 				std::cout << "Invalid entry, please try again.";
@@ -343,7 +375,6 @@ void User_Interface::StudentBookReserve(std::string studentID)
 	std::cin.get();
 
 	start();
-
 }
 
 
@@ -360,6 +391,11 @@ void User_Interface::AdminLogin()
 		std::cin >> input;
 		if (input == "1234") //password for admin
 		{
+			valid_input = true;
+		}
+		else if (input == "-1")
+		{
+			start();
 			valid_input = true;
 		}
 		else
@@ -398,12 +434,17 @@ void User_Interface::AdminMenu()
 		}
 		else if (input == "3")
 		{
-			//add user
+			AdminAddUser();
 			valid_input = true;
 		}
 		else if (input == "4")
 		{
-			//add book
+			AdminAddBook();
+			valid_input = true;
+		}
+		else if (input == "-1")
+		{
+			start();
 			valid_input = true;
 		}
 		else
@@ -441,6 +482,11 @@ void User_Interface::ShowAllUsers()
 		{
 			//goto single user view
 			ShowSingleUser(input);
+			valid_input = true;
+		}
+		else if (input == "-1")
+		{
+			start();
 			valid_input = true;
 		}
 		else
@@ -524,6 +570,11 @@ void User_Interface::ShowAllBooks()
 				ShowSingleBook(std::stoi(input));
 				valid_input = true;
 			}
+			else if (input == "-1")
+			{
+				start();
+				valid_input = true;
+			}
 			else
 			{
 				std::cout << "No such book exists." << std::endl;
@@ -585,4 +636,137 @@ void User_Interface::ShowSingleBook(int bID)
 
 	std::cin.get();
 	std::cin.get();
+}
+
+
+void User_Interface::AdminAddUser()
+{
+	system("cls");
+	
+	Library& lib = Library::GetInstance();
+
+	std::string name;
+	std::cout << "Please enter the name: ";
+	std::cin >> name;
+	system("cls");
+	
+	std::string surname;
+	std::cout << "Please enter the surname: ";
+	std::cin >> surname;
+	system("cls");
+
+	//age requires checking if it's an integer
+	bool valid_input = true;
+	std::string age;
+	do
+	{
+		system("cls");
+		std::cout << "Please enter age: ";
+		std::cin >> age;
+		try
+		{
+			int ageInt = std::stoi(age);
+		}
+		catch(...)
+		{
+			std::cout << "Invalid input!" << std::endl;
+			std::cin.get();
+			std::cin.get();
+			valid_input = false;
+		}
+	} while (valid_input == false);
+
+
+	system("cls");
+	std::string ID;
+	std::cout << "Please enter university ID: ";
+	std::cin >> ID;
+	system("cls");
+
+	Student temp;
+	temp.setName(name);
+	temp.setSurname(surname);
+	temp.setAge(std::stoi(age));
+	temp.setUniID(ID);
+
+	lib.addUser(temp);
+
+	AdminMenu();
+}
+
+
+void User_Interface::AdminAddBook()
+{
+	system("cls");
+	
+	Library& lib = Library::GetInstance();
+
+	std::string title;
+	std::cout << "Please enter the title: ";
+	std::cin >> title;
+	system("cls");
+	
+	//internal ID requires checking if it's an integer
+	std::string inID;
+	bool valid_input = true;
+	do
+	{
+		system("cls");
+		std::cout << "Please enter the internal book ID: ";
+		std::cin >> inID;
+
+		if (isNumber(inID))
+		{
+			valid_input = true;
+		}
+		else
+		{
+			std::cout << "Invalid input!" << std::endl;
+			std::cin.get();
+			std::cin.get();
+			valid_input = false;
+		}
+	} while (valid_input == false);
+
+	system("cls");
+	std::string ISBN;
+	std::cout << "Please enter the ISBN: ";
+	std::cin >> ISBN;
+	system("cls");
+
+	//page count requires checking if it's an integer
+	std::string pages;
+	valid_input = true;
+	do
+	{
+		system("cls");
+		std::cout << "Please enter the page count: ";
+		std::cin >> pages;
+
+		if (isNumber(pages))
+		{
+			valid_input = true;
+		}
+		else
+		{
+			std::cout << "Invalid input!" << std::endl;
+			std::cin.get();
+			std::cin.get();
+			valid_input = false;
+		}
+	} while (valid_input == false);
+
+	Book temp;
+	temp.setTitle(title);
+	temp.setInternalID(std::stoi(inID));
+	temp.setChecked(false);
+	temp.setReserved(false);
+	temp.setReservedDate("0000_00_00");
+	temp.setReturnDate("0000_00_00");
+	temp.setISBN(ISBN);
+	temp.setPageCount(std::stoi(pages));
+
+	lib.addItem(temp);
+
+	AdminMenu();
 }

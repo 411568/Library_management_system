@@ -37,6 +37,19 @@ private:
 
 	void ShowSingleBook(int bID);
 
+	void AdminAddUser();
+
+	void AdminAddBook();
+
+	bool isNumber(const std::string& s)
+	{
+		for (char const& ch : s) {
+			if (std::isdigit(ch) == 0)
+				return false;
+		}
+		return true;
+	}
+
 public:
 	//start the main interface
 	void start();

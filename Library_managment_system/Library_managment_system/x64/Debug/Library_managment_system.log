@@ -1,5 +1,2 @@
-﻿  DateParser.cpp
-C:\Users\User\Desktop\Library_managment_system\Library_managment_system\Library_managment_system\DateParser.cpp(9,12): warning C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  Library.cpp
-  Generating Code...
+﻿  User_Interface.cpp
   Library_managment_system.vcxproj -> C:\Users\User\Desktop\Library_managment_system\Library_managment_system\x64\Debug\Library_managment_system.exe
