@@ -1,3 +1,2 @@
-Krzystof;Sikora;20;3213123;
-Krzystof;Sikora;20;3213123;
-Krzystof;Sikora;20;3213123;
+Kamil;asew;23;233;43;_;
+Krzys;asd;21;234;321;_;123;
