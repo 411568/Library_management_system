@@ -1,5 +1,4 @@
 #include "DateParser.h"
-#pragma warning(suppress : 4996)
 
 std::string DateParser::getCurrentDate()
 {

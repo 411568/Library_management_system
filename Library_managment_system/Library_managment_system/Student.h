@@ -1,9 +1,10 @@
 /*
-	This class represents a single student - which is a child class of "user"
+	This class represents a single student - it is a child class of "user"
 	Additional properties include:
 		- uniID - university ID
 		- age
 		- checkedOutItems - a vector containing all the items student has checkedOut
+		- reservedItems - items reserved by the student
 */
 
 #pragma once

@@ -1,3 +1,10 @@
+/*
+	This class is used by the Library object to read and write its data from/to files.
+	It contains:
+		- readUser/BookDatabase() - those methods take the vector from the library object and add objects to it based on the file content
+		- saveUser/ItemDaatabase() - those two save the library object content to files
+*/
+
 #pragma once
 #include <vector>
 #include <map>

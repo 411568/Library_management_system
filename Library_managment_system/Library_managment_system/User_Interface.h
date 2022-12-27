@@ -1,5 +1,8 @@
 /*
 	This is the console user interface for the library managment system
+	The main menu is shown by the "start()" method, which in turn uses all the other private methods to show 
+	additional submenus for the student/admin.
+	isNumber() method checks whether an input string is a number - it is used in some input checks
 */
 
 #pragma once

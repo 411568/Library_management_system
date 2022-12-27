@@ -1,5 +1,15 @@
 /*
 	This class represents the library. It contains a list of all the items in the library and it's users.
+	Properties:
+		- libraryItems - vector of all the books in the library
+		- libraryUsers - vector of all the students
+
+	Methods:
+		- readUser/BookFile() - read data from files
+		- saveToFiles() - saves data to file (uses the fileReadWrite)
+		- checkOutBook() - takes a student ID and book ID and checks out a book
+		- returnBook() - returns a book to the library and returns the amount of days it's been overdue
+		- reserveBook() - reserves a single book for a student
 */
 
 #pragma once
