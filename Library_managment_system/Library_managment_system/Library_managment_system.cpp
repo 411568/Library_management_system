@@ -13,9 +13,8 @@ int main()
 
     std::cin.get();
 
-//    std::unique_ptr<User_Interface> userInteface;
-
-        //using this now because I want to see all the errors
+    try
+    {
 		auto lib = Library::GetInstance();
 		lib.readBookFile();
 		lib.readUserFile();
@@ -27,22 +26,10 @@ int main()
         lib.saveToFiles();
 
         return 0;
-
-    /*
-    try
-    {
-		Library& lib = Library::GetInstance();
-		lib.readBookFile();
-		lib.readUserFile();
-
-        userInteface->start();
-
-        //save all the changes to database
-        //lib.saveDataToFiles();
     }
     catch (...)
     {
         std::cout << "Error occurred. Exiting..." << std::endl;
         return 0;
-    }*/
+    }
 }

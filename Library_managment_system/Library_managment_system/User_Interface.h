@@ -41,14 +41,9 @@ private:
 
 	void AdminAddBook();
 
-	bool isNumber(const std::string& s)
-	{
-		for (char const& ch : s) {
-			if (std::isdigit(ch) == 0)
-				return false;
-		}
-		return true;
-	}
+	void AdminOverdueReport();
+
+	bool isNumber(const std::string& s);
 
 public:
 	//start the main interface

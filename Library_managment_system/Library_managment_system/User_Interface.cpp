@@ -285,7 +285,7 @@ void User_Interface::StudentBookReturn(std::string studentID)
 		std::cout << "The book has been returned. Thank you." << std::endl;
 		if (payment > 0)
 		{
-			std::cout << "You have to pay: " << payment * 10 << "zl, as it was overdue." << std::endl;
+			std::cout << "You have to pay: " << payment << "zl, as it was overdue." << std::endl;
 		}
 		std::cin.get();
 		std::cin.get();
@@ -419,7 +419,7 @@ void User_Interface::AdminMenu()
 	{
 		system("cls");
 		std::cout << "What would you like to do?" << std::endl;
-		std::cout << "1 - View all users\n2 - View all books\n3 - Add user\n4 - Add book" << std::endl;
+		std::cout << "1 - View all users\n2 - View all books\n3 - Add user\n4 - Add book\n5 - Show overdue books" << std::endl;
 
 		std::cin >> input;
 		if (input == "1")
@@ -440,6 +440,11 @@ void User_Interface::AdminMenu()
 		else if (input == "4")
 		{
 			AdminAddBook();
+			valid_input = true;
+		}
+		else if (input == "5")
+		{
+			AdminOverdueReport();
 			valid_input = true;
 		}
 		else if (input == "-1")
@@ -769,4 +774,55 @@ void User_Interface::AdminAddBook()
 	lib.addItem(temp);
 
 	AdminMenu();
+}
+
+void User_Interface::AdminOverdueReport()
+{
+	system("cls");
+
+	Library& lib = Library::GetInstance();
+	auto users = lib.getUsers();
+	auto books = lib.getItems();
+
+	for (auto user : users)
+	{
+		std::cout << user.getName() << " " << user.getSurname() << std::endl;
+
+		int payment = 0;
+		auto userBooks = user.getCheckedOutItems();
+		std::vector<int> bookIDs;
+		for (auto userItem : userBooks)
+		{
+			bookIDs.push_back(userItem.getInternalID());
+		}
+
+		for (auto book : books)
+		{
+			if (std::count(bookIDs.begin(), bookIDs.end(), book.getInternalID()))
+			{
+				int daysChecked = DateParser::dateDiff(DateParser::getCurrentDate(), book.getReturnDate());
+				if (daysChecked > 15)
+				{
+					std::cout << book.getTitle() << " overdue " << daysChecked - 15 << " days." << std::endl;
+					payment += daysChecked - 15;
+				}
+			}
+		}
+
+		std::cout << payment << "zl to pay" << std::endl << std::endl;
+	}
+
+	std::cin.get();
+	std::cin.get();
+
+	AdminMenu();
+}
+
+bool User_Interface::isNumber(const std::string& s)
+{
+	for (char const& ch : s) {
+		if (std::isdigit(ch) == 0)
+			return false;
+	}
+	return true;
 }
