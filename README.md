@@ -9,6 +9,11 @@ An administrator can view all the users, books, as well as add them to the datab
 The project was created using visual studio 2022 with C++ version 14 used. \
 It's was programmed and tested on a windows 11 OS, and some functions will not work in other operating systems (like system("cls") for clearing the console).
 
+##Screenshots
+
+Below are some screenshots from the running program:
+![Main menu](/screenshots/main_menu.png?raw=true "Main Menu")
+
 ## Author
 Krzysztof Sikora\
 27.12.2022
