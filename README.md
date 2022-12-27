@@ -4,6 +4,8 @@ Library Managment System is a program written as a university project in the C++
 The program then let's a single student log in using his university ID and check out, reserve or return any book. If the book was overdue, it will also show the required payment. \
 An administrator can view all the users, books, as well as add them to the database and generate a report of all the users, with any fees they have to pay for overdue books.
 
+\
+To go back to the main menu you can input -1 and then write 3 to exit the program.
 ## Compilation
 
 The project was created using visual studio 2022 with C++ version 14 used. \
