@@ -16,12 +16,6 @@
 class User_Interface
 {
 private:
-	User_Interface() = default;
-	User_Interface(const User_Interface&) = delete;
-	User_Interface& operator=(const User_Interface&) = delete;
-	User_Interface(User_Interface&&) = delete;
-	User_Interface& operator=(User_Interface&&) = delete;
-
 	//submenus
 	void StudentMenu();
 
@@ -46,5 +40,7 @@ private:
 public:
 	//start the main interface
 	void start();
+
+	static User_Interface& GetInstance();
 };
 

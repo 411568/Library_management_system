@@ -31,6 +31,9 @@ public:
 	//get the list of books from file
 	void readBookFile();
 
+	//save all the data back to files
+	void saveToFiles();
+
 
 	//checkOUT a book
 	void checkOutBook(const std::string& studID, const int& bID);

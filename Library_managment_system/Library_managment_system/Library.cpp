@@ -9,6 +9,7 @@ Library& Library::GetInstance()
 	return *singleton;
 }
 
+
 void Library::readUserFile()
 {
 	fileReadWrite::readUserDatabase(libraryUsers);
@@ -91,8 +92,19 @@ int Library::returnBook(const std::string& studID, const int& bID)
 			break;
 		}
 	}
-	return 0;
+
+	int daysChecked = DateParser::dateDiff(todaysDate, returnDate);
+	if (daysChecked > 15) // if longer that 15 days
+	{
+		return daysChecked - 15; //1zl per day overdue
+	}
+	else
+	{
+		return 0;
+	}
 	
+		//old version for payment calculation
+	/*
 	std::string yRet = returnDate.substr(0, 4);
 	std::string mRet = returnDate.substr(5, 2); 
 
@@ -117,6 +129,7 @@ int Library::returnBook(const std::string& studID, const int& bID)
 		//x months overdue - x money to pay
 		return (std::stoi(mNow) + (12 - std::stoi(mRet)));
 	}
+	*/
 }
 
 
@@ -140,4 +153,11 @@ void Library::reserveBook(const std::string& studID, const int& bID)
 			break;
 		}
 	}
+}
+
+
+void Library::saveToFiles()
+{
+	fileReadWrite::saveUserDatabase(libraryUsers);
+	fileReadWrite::saveItemDatabase(libraryItems);
 }

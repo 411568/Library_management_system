@@ -1,5 +1,11 @@
 #include "User_Interface.h"
 
+User_Interface& User_Interface::GetInstance()
+{
+	static User_Interface* singleton = new User_Interface();
+	return *singleton;
+}
+
 void User_Interface::start()
 {
 	std::string input;
@@ -39,7 +45,7 @@ void User_Interface::StudentMenu()
 	std::string ID;
 
 	//library instance
-	Library& lib = Library::GetInstance();
+	auto lib = Library::GetInstance();
 	auto students = lib.getUsers();
 
 	//get all the student IDs
@@ -106,7 +112,7 @@ void User_Interface::StudentBookCheck(std::string studentID)
 	//vector of books in the library
 	std::vector<Book> books;
 
-	Library& lib = Library::GetInstance();
+	auto lib = Library::GetInstance();
 	books = lib.getItems();
 
 	
@@ -178,7 +184,7 @@ void User_Interface::StudentBookReturn(std::string studentID)
 	//vector of books checked out by the student
 	std::vector<Book> books;
 
-	Library& lib = Library::GetInstance();
+	auto lib = Library::GetInstance();
 	std::vector<Student> students = lib.getUsers();
 
 	int i = 0;
@@ -273,7 +279,7 @@ void User_Interface::StudentBookReserve(std::string studentID)
 	//vector of books in the library
 	std::vector<Book> books;
 
-	Library& lib = Library::GetInstance();
+	auto lib = Library::GetInstance();
 	books = lib.getItems();
 
 	
@@ -415,7 +421,7 @@ void User_Interface::ShowAllUsers()
 	bool valid_input = false;
 
 	//get all the library users
-	Library& lib = Library::GetInstance();
+	auto lib = Library::GetInstance();
 	std::vector<Student> students = lib.getUsers();
 	std::vector<std::string> IDs;
 
@@ -453,7 +459,7 @@ void User_Interface::ShowSingleUser(std::string studentID)
 {
 	system("cls");
 
-	Library& lib = Library::GetInstance();
+	auto lib = Library::GetInstance();
 	std::vector<Student> students = lib.getUsers();
 
 	for (int i = 0; i < students.size(); i++)
@@ -494,7 +500,7 @@ void User_Interface::ShowAllBooks()
 	bool valid_input = false;
 
 	//get all the library users
-	Library& lib = Library::GetInstance();
+	auto lib = Library::GetInstance();
 	std::vector<Book> books = lib.getItems();
 	std::vector<int> IDs;
 
@@ -541,7 +547,7 @@ void User_Interface::ShowSingleBook(int bID)
 {
 	system("cls");
 
-	Library& lib = Library::GetInstance();
+	auto lib = Library::GetInstance();
 	std::vector<Book> books = lib.getItems();
 
 	for (int i = 0; i < books.size(); i++)

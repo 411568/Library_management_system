@@ -13,14 +13,18 @@ int main()
 
     std::cin.get();
 
-    std::unique_ptr<User_Interface> userInteface;
+//    std::unique_ptr<User_Interface> userInteface;
 
         //using this now because I want to see all the errors
-		Library& lib = Library::GetInstance();
+		auto lib = Library::GetInstance();
 		lib.readBookFile();
 		lib.readUserFile();
 
-        userInteface->start();
+        auto interface = User_Interface::GetInstance();
+        interface.start();
+
+        //save all data before exiting
+        lib.saveToFiles();
 
         return 0;
 

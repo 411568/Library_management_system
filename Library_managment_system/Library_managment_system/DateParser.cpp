@@ -55,3 +55,31 @@ std::string DateParser::getReturnDate()
 
 	return toDate(year, month, day);
 }
+
+int DateParser::dateDiff(std::string date1, std::string date2)
+{
+	int y1 = std::stoi(date1.substr(0, 4));
+	int m1 = std::stoi(date1.substr(5, 2));
+	int d1 = std::stoi(date1.substr(8, 2));
+
+	int y2 = std::stoi(date2.substr(0, 4));
+	int m2 = std::stoi(date2.substr(5, 2));
+	int d2 = std::stoi(date2.substr(8, 2));
+
+	//Rata Die
+	if (m1 < 3)
+	{
+		y1--;
+		m1 += 12;
+	}
+	int rdn1 = 365 * y1 + y1 / 4 - y1 / 100 + y1 / 400 + (153 * m1 - 457) / 5 + d1 - 306;
+
+	if (m2 < 3)
+	{
+		y2--;
+		m2 += 12;
+	}
+	int rdn2 = 365 * y2 + y2 / 4 - y2 / 100 + y2 / 400 + (153 * m2 - 457) / 5 + d2 - 306;
+
+	return (rdn1 - rdn2);
+}

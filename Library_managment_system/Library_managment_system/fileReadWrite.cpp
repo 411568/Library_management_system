@@ -58,7 +58,7 @@ void fileReadWrite::readUserDatabase(std::vector<Student>& students)
 			}
 
 
-			Library& lib = Library::GetInstance();
+			auto lib = Library::GetInstance();
 			std::vector<Book> books = lib.getItems();
 
 			//add books to the user
@@ -130,4 +130,14 @@ void fileReadWrite::readBookDatabase(std::vector<Book>& books)
 
 		books.push_back(tempBook);
 	}
+}
+
+void fileReadWrite::saveUserDatabase(const std::vector<Student>& students)
+{
+
+}
+
+void fileReadWrite::saveItemDatabase(const std::vector<Book>& books)
+{
+
 }
