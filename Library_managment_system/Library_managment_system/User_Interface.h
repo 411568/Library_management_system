@@ -48,6 +48,14 @@ private:
 
 	bool isNumber(const std::string& s);
 
+	//delete conststructors
+	User_Interface() {};
+
+	User_Interface(User_Interface const& copy);
+	User_Interface& operator=(User_Interface const&) = delete;
+	User_Interface& operator=(User_Interface const&&) = delete;
+	User_Interface(User_Interface const&& copy) = delete;
+
 public:
 	//start the main interface
 	void start();

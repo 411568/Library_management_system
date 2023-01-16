@@ -16,11 +16,11 @@ int main()
 
     try
     {
-		auto lib = Library::GetInstance();
+		Library& lib = Library::GetInstance();
 		lib.readBookFile();
 		lib.readUserFile();
 
-        auto interface = User_Interface::GetInstance();
+        User_Interface& interface = User_Interface::GetInstance();
         interface.start();
 
         //save all data before exiting

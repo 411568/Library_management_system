@@ -32,6 +32,14 @@ private:
 	//list of all the students
 	static std::vector<Student> libraryUsers;
 
+	//deleting the constructors because it's a singleton
+	Library() {};
+
+	Library(Library const& copy);
+	Library& operator=(Library const&) = delete;
+	Library& operator=(Library const&&) = delete;
+	Library(Library const&& copy) = delete;
+
 public:
 	static Library& GetInstance();
 	
